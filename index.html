@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
   </head>
   <body>
     <div id="perguntas">
@@ -27,6 +28,7 @@
       <p id="cr">Concreto Randomico</p>
       <p id="as">Abstrato Sequencial</p>
       <p id="ar">Abstrato Randomico</p>
+      <canvas id="grafico"></canvas>
     </div>
     <script>
       let p = 0;
@@ -91,6 +93,38 @@
           'Abstrato Sequencial ' + conjuntoR.Abstrato_S;
         document.getElementById('ar').innerText =
           'Abstrato Randomico ' + conjuntoR.Abstrato_R;
+        // Mostrar em forma de radar
+        criarGraficoRadar();
+      }
+      function criarGraficoRadar() {
+        var canvas = document.getElementById('grafico');
+        var valores = [
+          conjuntoR.Concreto_S,
+          conjuntoR.Abstrato_S,
+          conjuntoR.Abstrato_R,
+          conjuntoR.Concreto_R,
+        ];
+        var data = {
+          labels: ['Concreto S', 'Abstrato S', 'Abstrato R', 'Concreto R'],
+          datasets: [
+            {
+              data: valores,
+            },
+          ],
+        };
+
+        var chart = new Chart(canvas, {
+          type: 'radar',
+          data: data,
+          options: {
+            title: {
+              display: true,
+              text: 'Gráfico Radar',
+            },
+          },
+        });
+
+        chart.render();
       }
     </script>
   </body>
