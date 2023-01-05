@@ -28,7 +28,7 @@
       <p id="cr">Concreto Randomico</p>
       <p id="as">Abstrato Sequencial</p>
       <p id="ar">Abstrato Randomico</p>
-      <canvas id="grafico"></canvas>
+      <canvas id="grafico"> o</canvas>
     </div>
     <script>
       let p = 0;
@@ -98,6 +98,7 @@
       }
       function criarGraficoRadar() {
         var canvas = document.getElementById('grafico');
+        canvas.height = 5;
         var valores = [
           conjuntoR.Concreto_S,
           conjuntoR.Abstrato_S,
@@ -108,7 +109,15 @@
           labels: ['Concreto S', 'Abstrato S', 'Abstrato R', 'Concreto R'],
           datasets: [
             {
+              label: 'Suas estatisticas',
               data: valores,
+              backgroundColor: [
+                '#ff0000', // Vermelho
+                '#00ff00', // Verde
+                '#0000ff', // Azul
+                '#ffff00', // Amarelo
+              ],
+              backgroundColor: 'rgba(255,255,0, 0.2)',
             },
           ],
         };
@@ -120,6 +129,9 @@
             title: {
               display: true,
               text: 'Gráfico Radar',
+            },
+            scale: {
+              display: false,
             },
           },
         });
